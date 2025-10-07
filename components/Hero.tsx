@@ -6,11 +6,11 @@ export default function Hero() {
           Hi, I&apos;m <span className="text-accent-primary">Jaime Navascués</span>
         </h1>
         <p className="text-xl md:text-2xl text-foreground/80 mb-8">
-          Systems Programmer & Problem Solver
+          Software Developer & Problem Solver
         </p>
         <p className="text-lg text-foreground/60 max-w-2xl mx-auto mb-12">
-          Student at 42 Madrid specializing in low-level programming with C/C++.
-          From systems programming to AI algorithms, I build robust and scalable solutions.
+          Student at 42 Madrid with strong expertise in C/C++ systems programming.
+          Currently expanding into data science and data engineering to build scalable data-driven solutions.
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
           <a
