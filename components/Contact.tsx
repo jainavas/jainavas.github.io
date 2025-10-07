@@ -4,8 +4,8 @@ export default function Contact() {
       <div className="max-w-2xl mx-auto text-center">
         <h2 className="text-4xl font-bold mb-8">Get In Touch</h2>
         <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-          I'm always open to new opportunities and collaborations.
-          Feel free to reach out if you'd like to work together!
+          I&apos;m always open to new opportunities and collaborations.
+          Feel free to reach out if you&apos;d like to work together!
         </p>
         <div className="flex gap-6 justify-center flex-wrap">
           <a
