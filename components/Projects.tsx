@@ -23,9 +23,9 @@ const projectCategories = [
     projects: [
       {
         title: "Gomoku AI",
-        description: "Game-playing AI using minimax algorithm with alpha-beta pruning",
-        tech: ["Python", "AI", "Game Theory"],
-        link: "#",
+        description: "Five-in-a-row game with intelligent AI opponent using minimax algorithm with alpha-beta pruning for optimal decision-making",
+        tech: ["C++", "AI", "Minimax", "Game Theory"],
+        link: "https://github.com/jainavas/gomoku",
       },
       {
         title: "Algorithm Visualizer",
