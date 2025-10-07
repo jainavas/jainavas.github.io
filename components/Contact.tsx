@@ -1,16 +1,16 @@
 export default function Contact() {
   return (
-    <section id="contact" className="py-20 px-4 bg-gray-50 dark:bg-gray-900">
+    <section id="contact" className="py-20 px-4 bg-background">
       <div className="max-w-2xl mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-8">Get In Touch</h2>
-        <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
+        <h2 className="text-4xl font-bold mb-8 text-foreground">Get In Touch</h2>
+        <p className="text-lg text-foreground/80 mb-8">
           I&apos;m always open to new opportunities and collaborations.
           Feel free to reach out if you&apos;d like to work together!
         </p>
         <div className="flex gap-6 justify-center flex-wrap">
           <a
             href="mailto:your.email@example.com"
-            className="px-8 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+            className="px-8 py-3 bg-accent-primary text-background rounded-lg hover:bg-accent-primary/90 transition font-semibold"
           >
             Email Me
           </a>
@@ -18,7 +18,7 @@ export default function Contact() {
             href="https://github.com/yourusername"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-3 border-2 border-blue-500 text-blue-500 rounded-lg hover:bg-blue-500 hover:text-white transition"
+            className="px-8 py-3 border-2 border-accent-secondary text-accent-secondary rounded-lg hover:bg-accent-secondary hover:text-background transition font-semibold"
           >
             GitHub
           </a>
@@ -26,7 +26,7 @@ export default function Contact() {
             href="https://linkedin.com/in/yourusername"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-3 border-2 border-blue-500 text-blue-500 rounded-lg hover:bg-blue-500 hover:text-white transition"
+            className="px-8 py-3 border-2 border-accent-primary text-accent-primary rounded-lg hover:bg-accent-primary hover:text-background transition font-semibold"
           >
             LinkedIn
           </a>

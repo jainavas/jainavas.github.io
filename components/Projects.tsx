@@ -1,55 +1,103 @@
-const projects = [
+const projectCategories = [
   {
-    title: "Project One",
-    description: "A full-stack web application built with Next.js and Node.js",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
-    link: "#",
+    category: "Systems & Graphics",
+    color: "accent-primary",
+    projects: [
+      {
+        title: "Raycasting Engine",
+        description: "A 3D graphics engine built from scratch using raycasting algorithms",
+        tech: ["C", "Graphics", "Mathematics"],
+        link: "#",
+      },
+      {
+        title: "Bash Shell Reimplementation",
+        description: "Custom shell implementation with command parsing and execution",
+        tech: ["C", "Unix", "System Calls"],
+        link: "#",
+      },
+    ],
   },
   {
-    title: "Project Two",
-    description: "An e-commerce platform with real-time inventory management",
-    tech: ["React", "Express", "MongoDB"],
-    link: "#",
+    category: "AI & Algorithms",
+    color: "accent-secondary",
+    projects: [
+      {
+        title: "Gomoku AI",
+        description: "Game-playing AI using minimax algorithm with alpha-beta pruning",
+        tech: ["Python", "AI", "Game Theory"],
+        link: "#",
+      },
+      {
+        title: "Algorithm Visualizer",
+        description: "Interactive visualization of sorting and pathfinding algorithms",
+        tech: ["Python", "Algorithms", "Visualization"],
+        link: "#",
+      },
+    ],
   },
   {
-    title: "Project Three",
-    description: "A mobile-first progressive web app for task management",
-    tech: ["React", "Firebase", "PWA"],
-    link: "#",
+    category: "Web & Tools",
+    color: "accent-primary",
+    projects: [
+      {
+        title: "Portfolio Website",
+        description: "Personal portfolio built with Next.js and custom design",
+        tech: ["Next.js", "TypeScript", "Tailwind"],
+        link: "#",
+      },
+      {
+        title: "CLI Automation Suite",
+        description: "Collection of bash scripts for development workflow automation",
+        tech: ["Bash", "Shell Scripting", "DevOps"],
+        link: "#",
+      },
+    ],
   },
 ];
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-20 px-4 bg-gray-50 dark:bg-gray-900">
+    <section id="projects" className="py-20 px-4 bg-surface">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold mb-12 text-center">My Projects</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-xl transition"
-            >
-              <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-4">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tech.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-200 rounded-full text-sm"
+        <h2 className="text-4xl font-bold mb-12 text-center text-foreground">My Projects</h2>
+        <div className="space-y-16">
+          {projectCategories.map((category, catIndex) => (
+            <div key={catIndex}>
+              <h3 className={`text-2xl font-bold mb-6 text-${category.color} flex items-center gap-3`}>
+                <span className={`w-12 h-1 bg-${category.color} rounded`}></span>
+                {category.category}
+              </h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                {category.projects.map((project, projIndex) => (
+                  <div
+                    key={projIndex}
+                    className="bg-background rounded-lg p-6 border border-accent-primary/20 hover:border-accent-primary/40 transition group"
                   >
-                    {tech}
-                  </span>
+                    <h4 className="text-xl font-bold mb-3 text-foreground group-hover:text-accent-primary transition">
+                      {project.title}
+                    </h4>
+                    <p className="text-foreground/70 mb-4">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.tech.map((tech, i) => (
+                        <span
+                          key={i}
+                          className="px-3 py-1 bg-accent-secondary/20 text-accent-secondary rounded-full text-sm font-medium"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    <a
+                      href={project.link}
+                      className="text-accent-primary hover:text-accent-primary/80 font-semibold inline-flex items-center gap-2"
+                    >
+                      View Project →
+                    </a>
+                  </div>
                 ))}
               </div>
-              <a
-                href={project.link}
-                className="text-blue-500 hover:text-blue-600 font-semibold"
-              >
-                View Project →
-              </a>
             </div>
           ))}
         </div>
