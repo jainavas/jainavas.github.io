@@ -1,27 +1,27 @@
 export default function Hero() {
   return (
-    <section className="min-h-screen flex items-center justify-center px-4">
+    <section className="min-h-screen flex items-center justify-center px-4 bg-background">
       <div className="max-w-4xl mx-auto text-center">
-        <h1 className="text-5xl md:text-7xl font-bold mb-6">
-          Hi, I&apos;m <span className="text-blue-500">Your Name</span>
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
+          Hi, I&apos;m <span className="text-accent-primary">Your Name</span>
         </h1>
-        <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
-          Full Stack Developer & Creative Problem Solver
+        <p className="text-xl md:text-2xl text-foreground/80 mb-8">
+          Software Engineer & Problem Solver
         </p>
-        <p className="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto mb-12">
-          I build modern web applications with cutting-edge technologies.
-          Passionate about creating elegant solutions to complex problems.
+        <p className="text-lg text-foreground/60 max-w-2xl mx-auto mb-12">
+          From low-level systems programming in C to AI algorithms in Python,
+          I build solutions across the full spectrum of software development.
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
           <a
             href="#projects"
-            className="px-8 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
+            className="px-8 py-3 bg-accent-primary text-background rounded-lg hover:bg-accent-primary/90 transition font-semibold"
           >
             View My Work
           </a>
           <a
             href="#contact"
-            className="px-8 py-3 border-2 border-blue-500 text-blue-500 rounded-lg hover:bg-blue-500 hover:text-white transition"
+            className="px-8 py-3 border-2 border-accent-secondary text-accent-secondary rounded-lg hover:bg-accent-secondary hover:text-background transition font-semibold"
           >
             Get In Touch
           </a>
