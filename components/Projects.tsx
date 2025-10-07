@@ -20,9 +20,24 @@ const projectCategories = [
     color: "accent-primary",
     projects: [
       {
-        title: "Raycasting Engine",
-        description: "A 3D graphics engine built from scratch using raycasting algorithms",
-        tech: ["C", "Graphics", "Mathematics"],
+        title: "cub3D - Raycasting Engine",
+        description: "A minimalist 3D graphics engine inspired by Wolfenstein 3D that renders 3D scenarios from 2D maps using raycasting",
+        longDescription: `A complete 3D graphics engine written in C that implements raycasting to create real-time 3D environments from 2D maps. Inspired by the classic Wolfenstein 3D, this project demonstrates fundamental 3D rendering techniques without modern graphics APIs.
+
+The engine uses the Digital Differential Analyzer (DDA) algorithm for efficient ray-grid traversal and implements proper texture mapping with support for different wall textures per direction. Maps are defined through custom .cub configuration files that specify textures, colors, and layout.
+
+Built as a 42 School project with a focus on performance, achieving stable 60 FPS through optimized rendering and minimal API calls. The modular architecture separates concerns across game loop, graphics, input handling, and map parsing.`,
+        tech: ["C", "Raycasting", "X11", "MiniLibX"],
+        features: [
+          "Real-time 3D rendering using raycasting algorithm",
+          "Digital Differential Analyzer (DDA) for ray-grid traversal",
+          "Full wall texturing with XPM format support (North, South, East, West)",
+          "Configurable maps via .cub files with flood-fill validation",
+          "Fluid player controls with collision detection",
+          "Optimized to run at stable ~60 FPS",
+          "Modular codebase following 42 School coding standards",
+        ],
+        githubLink: "https://github.com/jainavas/cub3d",
       },
       {
         title: "Bash Shell Reimplementation",
