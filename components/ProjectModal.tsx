@@ -1,6 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import ImageLightbox from "./ImageLightbox";
 
 interface ProjectModalProps {
   isOpen: boolean;
@@ -18,6 +20,8 @@ interface ProjectModalProps {
 }
 
 export default function ProjectModal({ isOpen, onClose, project }: ProjectModalProps) {
+  const [lightboxImage, setLightboxImage] = useState<{ src: string; alt: string } | null>(null);
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -100,15 +104,31 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
           {/* Images */}
           {project.images && project.images.length > 0 && (
             <div className="mb-8">
-              <h3 className="text-2xl font-bold mb-4 text-accent-primary">Screenshots</h3>
+              <h3 className="text-2xl font-bold mb-4 text-accent-primary">Gallery</h3>
               <div className="grid gap-4 md:grid-cols-2">
                 {project.images.map((image, i) => (
-                  <img
+                  <div
                     key={i}
-                    src={image}
-                    alt={`${project.title} screenshot ${i + 1}`}
-                    className="rounded-lg border border-accent-primary/20 w-full"
-                  />
+                    className="relative overflow-hidden rounded-lg border border-accent-primary/20 hover:border-accent-primary/40 transition-all duration-300 group aspect-video cursor-zoom-in"
+                    onClick={() => setLightboxImage({ src: image, alt: `${project.title} screenshot ${i + 1}` })}
+                  >
+                    <Image
+                      src={image}
+                      alt={`${project.title} screenshot ${i + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      unoptimized={image.endsWith('.gif')}
+                    />
+                    {/* Zoom icon hint */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                      <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 rounded-full p-3">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -142,6 +162,15 @@ export default function ProjectModal({ isOpen, onClose, project }: ProjectModalP
           </div>
         </div>
       </div>
+
+      {/* Lightbox for full-screen image viewing */}
+      {lightboxImage && (
+        <ImageLightbox
+          src={lightboxImage.src}
+          alt={lightboxImage.alt}
+          onClose={() => setLightboxImage(null)}
+        />
+      )}
     </div>
   );
 }

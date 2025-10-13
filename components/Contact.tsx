@@ -23,7 +23,7 @@ export default function Contact() {
             GitHub
           </a>
           <a
-            href="https://linkedin.com/in/jaime-navascues"
+            href="https://linkedin.com/in/jaimenavascues-p"
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-3 border-2 border-accent-primary text-accent-primary rounded-lg hover:bg-accent-primary hover:text-background transition font-semibold"
