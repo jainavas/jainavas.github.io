@@ -134,6 +134,59 @@ zero memory leaks (Valgrind-verified, excluding readline library) through system
 		color: "accent-secondary",
 		projects: [
 			{
+				title: "Lem-in - Ant Colony Pathfinding",
+				description: "Graph optimization solver that moves ant colonies through tunnel networks using multi-path BFS and flow distribution algorithms",
+				longDescription: `Advanced graph pathfinding and optimization system that solves the challenge of moving ant colonies through complex room networks in minimum time. Implements sophisticated algorithms for multi-path discovery and optimal resource distribution, demonstrating practical applications of graph theory and flow optimization.
+
+Core technical challenges solved:
+
+- Multi-Path BFS Algorithm: Custom breadth-first search implementation that discovers all possible paths simultaneously from start to end nodes. Unlike standard BFS that finds a single path, this system explores the entire solution space to identify multiple disjoint paths, enabling parallel ant movement. Implements efficient path deduplication and cycle detection to avoid redundant route exploration.
+
+- Optimal Ant Distribution: NP-hard optimization problem requiring intelligent resource allocation across multiple paths. Implemented greedy distribution algorithm with O(P × A) complexity that minimizes total completion time by balancing path lengths against ant counts. Each distribution decision considers cumulative flow through the network, preventing bottlenecks and ensuring maximum throughput.
+
+- Flow Network Simulation: Step-by-step ant movement engine with collision detection and room occupancy tracking. Implements flow control logic ensuring no two ants occupy the same room (except start/end), requiring careful sequencing of moves across parallel paths. Achieves conflict-free movement scheduling through lookahead validation and dynamic path adjustment.
+
+- Graph Validation & Parsing: Robust input parser handling complex room-tunnel specifications with comprehensive validation. Detects duplicate rooms, invalid connections, coordinate conflicts, and ensures graph connectivity between start/end nodes. Implements flood-fill validation to verify solvability before path computation begins.
+
+- Dynamic Memory Management: Efficient allocation strategies for graph structures scaling to 10,000+ nodes. Custom memory pooling for rooms, connections, and path storage with automatic cleanup preventing leaks. Implements overflow protection for integer operations during large-scale graph processing.
+
+- Interactive Visualization System: Python-based graph renderer using matplotlib with anti-overlap line algorithms for readable complex networks. Displays discovered paths with color coding, ant distribution statistics, and real-time simulation playback. Implements smart edge routing to separate parallel connections, preventing visual clutter in dense graphs.
+
+The system demonstrates practical graph algorithm engineering: from theoretical pathfinding concepts to production-ready simulation handling large-scale networks with 1000+ rooms, 3000+ connections, achieving solutions in <50ms for complex scenarios.`,
+				tech: [
+					"C",
+					"Graph Algorithms",
+					"BFS Pathfinding",
+					"Flow Optimization",
+					"Python",
+					"Matplotlib",
+					"Dynamic Memory",
+					"Algorithm Visualization"
+				],
+
+				features: [
+					"Multi-path BFS discovering all optimal routes simultaneously with O(V + E) complexity per path",
+					"Smart ant distribution algorithm minimizing total completion time through greedy optimization",
+					"Flow network simulation with collision detection ensuring conflict-free ant movement",
+					"Comprehensive graph validation: duplicate detection, connectivity checks, solvability verification",
+					"Dynamic memory management scaling efficiently to 10,000+ node networks",
+					"Robust input parser handling complex room-tunnel specifications with error recovery",
+					"Python visualizer with interactive graphs showing paths, distribution, and simulation playback",
+					"Anti-overlap line rendering for readable visualization of dense parallel connections",
+					"Performance benchmarks: <50ms solution time for 1000+ room networks",
+					"Path deduplication and cycle detection preventing redundant route exploration",
+					"Flood-fill validation ensuring start-to-end connectivity before computation",
+					"Real-time statistics: rooms, connections, paths found, steps required, completion time"
+				],
+				thumbnail: "/projects/lem-in/thumbnail.png",
+				images: [
+					"/projects/lem-in/intricate.png",
+					"/projects/lem-in/visualizer.png",
+					"/projects/lem-in/cli.png",
+				],
+				githubLink: "https://github.com/jainavas/lem-in",
+			},
+			{
 				title: "Gomoku AI",
 				description: "Five-in-a-row game with intelligent AI opponent using minimax algorithm with alpha-beta pruning for optimal decision-making",
 				longDescription: `Advanced Gomoku AI engine implementing competitive game-playing algorithms in C++. 
@@ -310,85 +363,124 @@ export default function Projects() {
 		setTimeout(() => setSelectedProject(null), 300);
 	};
 
+	const handleScroll = (categoryIndex: number, direction: 'left' | 'right') => {
+		const container = document.getElementById(`category-${categoryIndex}`);
+		if (container) {
+			const scrollAmount = direction === 'left' ? -400 : 400;
+			container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+		}
+	};
+
 	return (
 		<>
-			<section id="projects" className="py-20 px-4 bg-surface">
-				<div className="max-w-6xl mx-auto">
+			<section id="projects" className="py-20 bg-surface">
+				<div className="max-w-[1600px] mx-auto px-4">
 					<h2 className="text-4xl font-bold mb-12 text-center text-foreground">My Projects</h2>
 					<div className="space-y-16">
 						{projectCategories.map((category, catIndex) => (
 							<div key={catIndex}>
-								<h3 className={`text-2xl font-bold mb-6 text-${category.color} flex items-center gap-3`}>
+								<h3 className={`text-2xl font-bold mb-6 text-${category.color} flex items-center gap-3 px-4`}>
 									<span className={`w-12 h-1 bg-${category.color} rounded`}></span>
 									{category.category}
 								</h3>
-								<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-									{category.projects.map((project, projIndex) => (
-										<div
-											key={projIndex}
-											className="bg-background rounded-lg overflow-hidden border border-accent-primary/20 hover:border-accent-primary/40 transition-all duration-300 group cursor-pointer"
-											onClick={() => openModal(project)}
-										>
-											{/* Thumbnail Image - Larger and more prominent */}
-											{project.thumbnail && (
-												<div className="relative aspect-video overflow-hidden bg-surface">
-													<Image
-														src={project.thumbnail}
-														alt={`${project.title} preview`}
-														fill
-														sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-														className="object-cover transition-transform duration-500 group-hover:scale-105"
-														unoptimized={project.thumbnail.endsWith('.gif')}
-														priority={false}
-													/>
-													{/* Subtle gradient only at bottom */}
-													<div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background via-background/60 to-transparent pointer-events-none"></div>
 
-													{/* Title overlay on image */}
-													<div className="absolute bottom-0 left-0 right-0 p-4">
-														<h4 className="text-lg font-bold text-white drop-shadow-lg group-hover:text-accent-primary transition">
-															{project.title}
-														</h4>
+								{/* Horizontal scrolling container with hover navigation */}
+								<div className="relative group/category">
+									{/* Left scroll button */}
+									<button
+										onClick={() => handleScroll(catIndex, 'left')}
+										className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background border border-accent-primary/20 rounded-full p-3 opacity-0 group-hover/category:opacity-100 transition-opacity shadow-lg"
+										aria-label="Scroll left"
+									>
+										<svg className="w-6 h-6 text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+										</svg>
+									</button>
+
+									{/* Right scroll button */}
+									<button
+										onClick={() => handleScroll(catIndex, 'right')}
+										className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-background/90 hover:bg-background border border-accent-primary/20 rounded-full p-3 opacity-0 group-hover/category:opacity-100 transition-opacity shadow-lg"
+										aria-label="Scroll right"
+									>
+										<svg className="w-6 h-6 text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+											<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+										</svg>
+									</button>
+
+									{/* Scrollable container */}
+									<div
+										id={`category-${catIndex}`}
+										className="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth px-4 pb-4"
+										style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+									>
+										{category.projects.map((project, projIndex) => (
+											<div
+												key={projIndex}
+												className="flex-shrink-0 w-[400px] bg-background rounded-lg overflow-hidden border border-accent-primary/20 hover:border-accent-primary/40 transition-all duration-300 group cursor-pointer"
+												onClick={() => openModal(project)}
+											>
+												{/* Thumbnail Image - Much bigger */}
+												{project.thumbnail && (
+													<div className="relative h-[300px] overflow-hidden bg-surface">
+														<Image
+															src={project.thumbnail}
+															alt={`${project.title} preview`}
+															fill
+															sizes="400px"
+															className="object-cover transition-transform duration-500 group-hover:scale-105"
+															unoptimized={project.thumbnail.endsWith('.gif')}
+															priority={false}
+														/>
+														{/* Subtle gradient only at bottom */}
+														<div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background via-background/70 to-transparent pointer-events-none"></div>
+
+														{/* Title overlay on image */}
+														<div className="absolute bottom-0 left-0 right-0 p-5">
+															<h4 className="text-xl font-bold text-white drop-shadow-lg group-hover:text-accent-primary transition">
+																{project.title}
+															</h4>
+														</div>
 													</div>
-												</div>
-											)}
-
-											{/* Compact content area */}
-											<div className="p-4">
-												{/* Show title here only if no thumbnail */}
-												{!project.thumbnail && (
-													<h4 className="text-lg font-bold mb-2 text-foreground group-hover:text-accent-primary transition">
-														{project.title}
-													</h4>
 												)}
 
-												<p className="text-foreground/70 text-sm mb-3 line-clamp-2">
-													{project.description}
-												</p>
-
-												{/* Tech stack - compact */}
-												<div className="flex flex-wrap gap-1.5 mb-3">
-													{project.tech.slice(0, 4).map((tech, i) => (
-														<span
-															key={i}
-															className="px-2 py-1 bg-accent-secondary/20 text-accent-secondary rounded text-xs font-medium"
-														>
-															{tech}
-														</span>
-													))}
-													{project.tech.length > 4 && (
-														<span className="px-2 py-1 text-foreground/50 text-xs">
-															+{project.tech.length - 4} more
-														</span>
+												{/* Compact content area */}
+												<div className="p-5">
+													{/* Show title here only if no thumbnail */}
+													{!project.thumbnail && (
+														<h4 className="text-xl font-bold mb-3 text-foreground group-hover:text-accent-primary transition">
+															{project.title}
+														</h4>
 													)}
-												</div>
 
-												<div className="text-accent-primary hover:text-accent-primary/80 font-semibold text-sm inline-flex items-center gap-1">
-													View Details →
+													<p className="text-foreground/70 text-sm mb-4 line-clamp-3">
+														{project.description}
+													</p>
+
+													{/* Tech stack - compact */}
+													<div className="flex flex-wrap gap-2 mb-4">
+														{project.tech.slice(0, 4).map((tech, i) => (
+															<span
+																key={i}
+																className="px-3 py-1 bg-accent-secondary/20 text-accent-secondary rounded text-xs font-medium"
+															>
+																{tech}
+															</span>
+														))}
+														{project.tech.length > 4 && (
+															<span className="px-3 py-1 text-foreground/50 text-xs">
+																+{project.tech.length - 4} more
+															</span>
+														)}
+													</div>
+
+													<div className="text-accent-primary hover:text-accent-primary/80 font-semibold text-sm inline-flex items-center gap-2">
+														View Details →
+													</div>
 												</div>
 											</div>
-										</div>
-									))}
+										))}
+									</div>
 								</div>
 							</div>
 						))}
