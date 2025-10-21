@@ -8,9 +8,35 @@ This directory contains images and GIFs for portfolio projects.
 projects/
 ├── cub3d/
 ├── gomoku/
+├── lem-in/
 ├── minishell/
-└── transcendence/
+├── transcendence/
+├── pushswap/         ⚠️ NEW - Awaiting media
+├── philosophers/     ⚠️ NEW - Awaiting media
+└── inception/        ⚠️ NEW - Awaiting media
 ```
+
+## ⚠️ Newly Added Projects (Media Needed)
+
+### Push_swap
+- `thumbnail.png` - Stack sorting visualization or algorithm diagram
+- `algorithm-visualization.png` - Turkish algorithm cost calculation
+- `stack-operations.gif` - Demo of sa, pa, ra operations
+- `performance.png` - Benchmark results chart
+
+### Philosophers  
+- `thumbnail.png` - Dining philosophers circular table illustration
+- `dining-philosophers.png` - Problem setup visualization
+- `deadlock-prevention.png` - Fork acquisition strategy diagram
+- `thread-synchronization.gif` - Philosopher state animation
+- `timing-diagram.png` - Precision timing analysis
+
+### Inception
+- `thumbnail.png` - Docker containers or WordPress+Docker logos
+- `architecture-diagram.png` - MariaDB+WordPress+Nginx architecture
+- `wordpress-demo.gif` - Running site demonstration
+- `docker-compose.png` - Container setup screenshot
+- `ssl-certificate.png` - HTTPS connection proof
 
 ## Image Specifications
 
